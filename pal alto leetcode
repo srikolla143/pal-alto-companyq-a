@@ -1,0 +1,25 @@
+1239. Maximum Length of a Concatenated String with Unique Characters
+def check(s,res):
+    freq=[0]*26
+    for i in range(len(s)):
+        freq[ord(s[i])-ord('a')]+=1
+    for i in range(26):
+        if freq[i]>1:
+            return False
+    return True
+def f(ind,arr,s,res):
+    if ind==n:
+        if check(s,res):
+            res.append(len(s))
+        return res
+    f(ind+1,arr,s+arr[ind],res)
+    f(ind+1,arr,s,res)
+    return res
+n=int(input())
+arr=[]
+for i in range(n):
+    x=input()
+    arr.append(x)
+s=""
+res=[]
+print(max(f(0,arr,s,res)))
